@@ -43,7 +43,7 @@ class Strict_model:
         X, y = preprocess_data(data, model_type='strict', process_type='train')
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.10)
         self.y_test = y_test
-        self.model.fit(X_train, y_train)
+        self.model.fit(X_train, y_train.values.ravel())
         filename = 'strict_model.sav'
         pickle.dump(self.model, open(filename, 'wb'))
         self.y_pred_test = self.model.predict(X_test)
@@ -64,7 +64,7 @@ class Middle_model:
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.10)
         self.y_test = y_test
         self.y_true = y
-        self.model.fit(X_train, y_train)
+        self.model.fit(X_train, y_train.values.ravel())
         pickle.dump(self.model, open("middle_model.pickle.dat", "wb"))
         self.y_pred_test = self.model.predict(X_test)
 
@@ -83,7 +83,7 @@ class Risk_model:
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.10)
         self.y_test = y_test
         self.y_true = y
-        self.model.fit(X_train, y_train)
+        self.model.fit(X_train, y_train.values.ravel())
         pickle.dump(self.model, open("risk_model.sav", "wb"))
         self.y_pred_test = self.model.predict(X_test)
 
